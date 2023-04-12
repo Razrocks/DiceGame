@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Dice Game</title>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,40 +16,39 @@
         <div class="sidebar">
             <h2>Session and Info</h2>
             <ul>
-                <li><input type="text" placeholder="Username" id="usuernameInput"></input></li>
-                <li><button>Set Username</button></li>
-                <li><input type="text" placeholder="Room code" id="roomCode"></li>
-                <li><button>Create/Join Room</button></li>
-                <ul style="display: flex; flex-direction: row; justify-content: center;">
-                    <li><button style="width: auto;">How To Play 📄</button></li>
-                    <li><button style="width: auto;">Battle Log 🤺</button></li>
-                </ul>
+                <li><input type="text" placeholder="Username" id="usernameInput"></li>
+                <li><button onclick="setUsername()">Set Username</button></li>
+                <li><input type="text" placeholder="Room code" id="roomCodeInput"></li>
+                <li><button onclick="setRoom()">Create/Join Room</button></li>
             </ul>
-
+            <h2>HOW TO PLAY? 📄</h2>
             <div class="info-box">
                 <p>1. Type your Username and press set username or press enter</p>
                 <p>2. Type in the room code and press set create/join or press enter </p>
-                <p>3. </p>
             </div>
-            <ul class="aboutButton">
-                <li><a href="about.html">About</a></li>
+            <ul class="about">
+                <li><button onclick="location.href='about.html'">About Us <i class="fa fa-group"></i></button></li>
             </ul>
         </div>
         <div class="game-section">
-            <div class="output">
-                this will be the output
+            <div id="output" class="output">
+                <p>Output</p>
             </div>
             <div class="action-bar">
                 <p>====</p>
-                <button class="action-button"id="Attack">Attack ⚔</button>
-                <button class="action-button"id="Defend">Defend 🛡</button>
-                <button class="action-button"id="Heal">Heal ♥</button>
+                <button class="action-button" onclick="attack()">Attack ⚔</button>
+                <button class="action-button" onclick="defend()">Defend 🛡</button>
+                <button class="action-button" onclick="heal()">Heal ♥</button>
+                <button class="leaderboard-button" onclick="location.href='leaderboard.html'">Leaderboards 🏆</button>
+                <button class="leave-button" onclick="leave()">Leave Game ✘</button>
                 <p>====</p>
             </div>
         </div>
     </div>
+    
     <footer>
         <p>copyright &copy; CSCI 2020U - Winter 2023</p>
-    </footer>  
+    </footer>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,17 +1,11 @@
-/* html,body
-{
-
-    overflow: hidden;
-} */
-
 body
 {
     margin: 0px;
     padding: 0px;
     display: flex;
     flex-direction: column;
-    background-color: chartreuse;
     min-height: 100vh;
+    background:#e6ecf1;
 }
 
 header
@@ -71,6 +65,7 @@ ul
     padding: 0;
     margin:0px;
     overflow-y: auto;
+    min-height: 14vh;
 }
 
 li
@@ -91,38 +86,13 @@ input
     flex-direction: column;
     width: 400px;
     overflow-y: auto;
-    max-height: 59.8vh;
+    max-height: 62vh;
 }
 
 .info-box p
 {
     padding: 5px;
     margin: 0;
-    color: white;
-}
-
-.aboutButton
-{
-    margin: 0;
-    margin-top: auto;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    background-color: #E75D2A;
-    min-height: 2vh;
-}
-.aboutButton:hover
-{
-    background-color: #ff7543;
-}
-.aboutButton a
-{
-    text-decoration: none;
-    /* need to mess with the padding later */
-    padding-left: 73px; 
-    padding-right: 73px;
-    padding-top: 11px;
-    padding-bottom: 11px;
-    font-weight: bold;
     color: white;
 }
 
@@ -141,6 +111,26 @@ input
 .sidebar button:hover
 {
     background-color: #3ce241;
+}
+
+.about
+{
+    margin: 0;
+    margin-top: auto;
+    min-height: 2vh;
+}
+
+.about button
+{
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px; 
+    background-color: #E75D2A;
+}
+
+.about button:hover
+{
+    background-color: #df7650;
 }
 
 
@@ -195,6 +185,42 @@ input
 .action-button:hover
 {
     background-color: #3ce241;
+}
+
+.leaderboard-button
+{
+    background-color: goldenrod;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 140px;
+}
+
+.leaderboard-button:hover
+{
+    background-color: gold;
+}
+
+.leave-button
+{
+    background-color: rgb(255, 78, 78);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+.leave-button:hover
+{
+    background-color: rgb(255, 0, 0);
 }
 
 footer
