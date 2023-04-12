@@ -33,7 +33,17 @@ function setRoom()
     roomCodeInput.value = "";
 
     // Connect to the websocket
-    ws = new WebSocket("ws://localhost:8080/"+roomCode);
+    ws = new WebSocket("ws://localhost:8080/w23-csci2020u-project-team43-1.0-SNAPSHOT/ws/"+roomCode);
+
+    
+    
+
+    while (ws.)
+    // Wait for 3 seconds before sending the "hello" message
+    setTimeout(function() {
+        ws.send("hello");
+    }, 10000);
+    
     // register username with server
 }
 
