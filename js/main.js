@@ -15,25 +15,40 @@ function setRoomAndUsername()
     // ws.readyState would be something to look at for this
     setTimeout(function() {
         ws.send("username:" + usernameInput.value);
-    }, 10000); 
+    }, 10000);
+
+    //display room code joined on output
+    document.getElementById('output').innerHTML =  usernameInput.value + ' has joined Room: ' + roomCode
 }
 
 function attack()
 {
     //send attack message
     ws.send("attack")
+    //send attack message to output
+    p = document.createElement("p")
+    p.textContent = usernameInput.value + " has attacked"
+    document.getElementById("output").append(p);
 }
 
 function defend()
 {
     //send defend message to server
     ws.send("defend")
+    //send defend message to output
+    p = document.createElement("p")
+    p.textContent = usernameInput.value + " has defended"
+    document.getElementById("output").append(p);
 }
 
 function heal()
 {
     //send heal message to server
     ws.send("heal")
+    //send heal message to output
+    p = document.createElement("p")
+    p.textContent = usernameInput.value + " has healed"
+    document.getElementById("output").append(p);
 }
 
 // need to catch all the messages from the server

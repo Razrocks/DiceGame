@@ -62,7 +62,7 @@ public class GameServer {
         // game loop goes here or take it into other functions/threads or something
 
         // after game ends make sure to do:
-        File file = new File(getClass().getClassLoader().getResource("leaderboard.json").toURI()); // throw this in try catch
+        //File file = new File(getClass().getClassLoader().getResource("leaderboard.json").toURI()); // throw this in try catch
         // then add +1 to the wins of the winner if they already exist in the list, if not add them to the list with a win of 1
 
     }
