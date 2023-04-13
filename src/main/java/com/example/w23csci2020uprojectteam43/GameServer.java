@@ -3,127 +3,78 @@ package com.example.w23csci2020uprojectteam43;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+
+import java.io.File;
 import java.util.*;
 
 @ServerEndpoint("/ws/{roomID}")
 public class GameServer {
-    Arraylist<Player> players = new Arraylist<Player>();
+    LinkedHashMap<Session, Player> players = new LinkedHashMap<Session, Player>(); //linked hash map so the order of the players is preserved (may not be needed)
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("roomID") String roomID) {
-        System.out.println("Connected to room: " + roomID);
+    public void onOpen(Session session, @PathParam("roomID") String roomID) 
+    {
+        System.out.println("Connected to room: " + roomID); //debug
 
-        players.add(new Player(session));
+        players.put(session,new Player()); //adding the new session to the list of players
     }
 
 
     @OnMessage
-    public void onMessage(String message, Session session) {
-        System.out.println("Received message: " + message);
+    public void onMessage(String message, Session session) 
+    {
+        System.out.println("Received message: " + message); //debug
 
-        //count how many players there are
-        Integer count = players.size();
-
+        // setting username of player
         if (message.contains("username:"))
         {
-            message = message.split(":")[1];
-
-            if (session == players[0].session)
+            String username = message.split(":")[1];
+            if (username == null || username == "")
             {
-                players[0].username = message;
+                players.get(session).username = "John Doe"; // defualt username
             }
-            else if (session == players[1].session)
+            else
             {
-                players[1].username = message;
+                players.get(session).username = username;
+            }
+
+            
+            // starting the game if this is the second player
+            if (players.size() == 2)
+            {
+                // sends a message to all players that the game is starting and rolls a random number for each player for first round
+                players.entrySet().forEach(entry -> 
+                {
+                    entry.getValue().session.getAsyncRemote().sendText("START");
+                    entry.getValue().roll = (int)(Math.random() * 6) + 1;
+                });
+
+                // setting the last player as the first player to go
+                players.get(session).turn = true;
+            }
+            else
+            {
+                // send message to player that they are waiting for another player
+                session.getAsyncRemote().sendText("WAIT");
             }
         }
 
-        switch (message) {
-            // case "username":
-            // if (count == 1)
-            // {
-            //     Player player1 = new Player(username, session);
-            // }
-            // else if (count == 2)
-            // {
-            //     Player player2 = new Player2(username, session);
-            // }
+        // game loop goes here or take it into other functions/threads or something
 
-            //     //start the game here somehow
-            //     break;
-        
-            case "attack":
-            if (session == player1.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do attack stuff here for player 1
-                    player1.actionFlag = true;
-                }
+        // after game ends make sure to do:
+        File file = new File(getClass().getClassLoader().getResource("leaderboard.json").toURI()); // throw this in try catch
+        // then add +1 to the wins of the winner if they already exist in the list, if not add them to the list with a win of 1
 
-            }
-            else if (session == player2.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do attack stuff here for player 2
-                    player2.actionFlag = true;
-                }
-            }
-                break;
-            case "defend":
-            if (session == player1.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do defend stuff here for player 1
-                    player1.actionFlag = true;
-                }
-            }
-            else if (session == player2.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do defend stuff here for player 2
-                    player2.actionFlag = true;
-                }
-            }
-                break;
-
-            case "heal":
-            if (session == player1.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do heal stuff here for player 1
-                    player1.actionFlag = true;
-                }
-            }
-            else if (session == player2.session)
-            {
-                if (actionFlag == false)
-                {
-                    //do heal stuff here for player 2
-                    player2.actionFlag = true;
-                }
-            }
-                break;
-        }
-
-
-        if (player1.actionFlag == true && player2.actionFlag == true)
-        {
-            // give updates to the client
-            //reset the action flags
-            player1.actionFlag = false;
-            player2.actionFlag = false;
-        }
-
-        
     }
 
+        
+
     @OnClose
-    public void onClose(Session session) {
-        System.out.println("Disconnected");
+    public void onClose(Session session) 
+    {
+        System.out.println("Disconnected"); //debug
+
+        players.remove(session); //removing the session from the list of players
+        // probably need to do something other stuff here too 
     }
 }

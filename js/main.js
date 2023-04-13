@@ -1,71 +1,42 @@
-// Getting and setting the username
-let username;
-let usernameInput = document.getElementById("usernameInput");
-usernameInput.addEventListener("keydown", function(event){
-    if (event.key === "Enter")
-    {
-        setUsername();
-    }
-})
-
-function setUsername()
-{
-    username = usernameInput.value;
-    usernameInput.value = "";
-    
-}
-
 // Creating/joining a room
 let ws;
 let roomCode;
 let roomCodeInput = document.getElementById("roomCodeInput");
-roomCodeInput.addEventListener("keydown", function(event)
-{
-    if (event.key === "Enter")
-    {
-        setRoom();
-    }
-})
-
-function setRoom()
+let usernameInput = document.getElementById("usernameInput");
+function setRoomAndUsername()
 {
     roomCode = roomCodeInput.value;
     roomCodeInput.value = "";
-
     // Connect to the websocket
     ws = new WebSocket("ws://localhost:8080/w23-csci2020u-project-team43-1.0-SNAPSHOT/ws/"+roomCode);
 
-
-
-    
-    
-    // IGNORE THIS PART
-    // while (ws.)
-    // // Wait for 3 seconds before sending the "hello" message
-    // setTimeout(function() {
-    //     ws.send("hello");
-    // }, 10000);
-    
-    // register username with server
+    // TEMPORARY FIX (LEAVE THIS IF A BETTER METHOD IS NOT FOUND)
+    // waiting a bit for the connection to be established (maybe find a way to send this msg only when the connection is established)
+    // ws.readyState would be something to look at for this
+    setTimeout(function() {
+        ws.send("username:" + usernameInput.value);
+    }, 10000); 
 }
-
-// function used to make sure websocket is created and connected
-function isConnected
 
 function attack()
 {
-    //send attack message to server with username and command "attack"
+    //send attack message
+    ws.send("attack")
 }
 
 function defend()
 {
-    //send defend message to server with username and command "defend"
+    //send defend message to server
+    ws.send("defend")
 }
 
 function heal()
 {
-    //send heal message to server with username and command "heal"
+    //send heal message to server
+    ws.send("heal")
 }
+
+// need to catch all the messages from the server
 
 function leave()
 {
