@@ -35,17 +35,22 @@ function setRoom()
     // Connect to the websocket
     ws = new WebSocket("ws://localhost:8080/w23-csci2020u-project-team43-1.0-SNAPSHOT/ws/"+roomCode);
 
-    
-    
 
-    while (ws.)
-    // Wait for 3 seconds before sending the "hello" message
-    setTimeout(function() {
-        ws.send("hello");
-    }, 10000);
+
+    
+    
+    // IGNORE THIS PART
+    // while (ws.)
+    // // Wait for 3 seconds before sending the "hello" message
+    // setTimeout(function() {
+    //     ws.send("hello");
+    // }, 10000);
     
     // register username with server
 }
+
+// function used to make sure websocket is created and connected
+function isConnected
 
 function attack()
 {
