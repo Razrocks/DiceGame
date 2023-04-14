@@ -25,6 +25,15 @@ function setRoomAndUsername()
     turn = 1;
 }
 
+function rollDice() {
+    p = document.createElement("p")
+    diceRoll = Math.floor(Math.random() * 6) + 1;
+    p.textContent = "Dice roll: " + diceRoll;
+    document.getElementById("output").append(p);
+
+
+}
+
 function attack()
 {
     //send attack message
@@ -33,6 +42,9 @@ function attack()
     p = document.createElement("p")
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has attacked"
     document.getElementById("output").append(p);
+
+    //roll dice
+    rollDice();
 
     //turn addition
     turn += 1;
@@ -47,6 +59,9 @@ function defend()
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has defended"
     document.getElementById("output").append(p);
 
+    //roll dice
+    rollDice();
+
     //turn addition
     turn += 1;
 }
@@ -59,6 +74,9 @@ function heal()
     p = document.createElement("p")
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has healed"
     document.getElementById("output").append(p);
+
+    //roll dice
+    rollDice();
 
     //turn addition
     turn += 1;
