@@ -16,7 +16,7 @@ public class GameServer {
     {
         System.out.println("Connected to room: " + roomID); //debug
 
-        players.put(session,new Player()); //adding the new session to the list of players
+        players.put(session,new Player(session)); //adding the new session to the list of players
     }
 
 

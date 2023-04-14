@@ -11,8 +11,8 @@ public class Player {
     public String action; // holds info about what action the user is currently doing
     public boolean turn; // for keeping track of whether its this user's turn or not
 
-    public Player() {
-        this.session = null;
+    public Player(Session session) {
+        this.session = session;
         this.username = null;
         this.hp = 20;
         this.roll = 0;
