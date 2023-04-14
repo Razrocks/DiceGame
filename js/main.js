@@ -73,12 +73,14 @@ function leave()
     {
         output.removeChild(output.firstChild);
     }
-    ws.close();
 
     //leave message for room
     p = document.createElement("p")
     p.textContent = usernameInput.value + " has left the room"
     document.getElementById("output").append(p);
 
-    //buttons work when room is left
+    ws.close();
+
+    //ws is set to null so the buttons will not work as ws is reset when room is left
+    ws = null;
 }
