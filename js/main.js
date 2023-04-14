@@ -3,6 +3,7 @@ let ws;
 let roomCode;
 let roomCodeInput = document.getElementById("roomCodeInput");
 let usernameInput = document.getElementById("usernameInput");
+let turn;
 function setRoomAndUsername()
 {
     roomCode = roomCodeInput.value;
@@ -19,6 +20,9 @@ function setRoomAndUsername()
 
     //display room code joined on output
     document.getElementById('output').innerHTML =  usernameInput.value + ' has joined Room: ' + roomCode
+
+    //turn reset
+    turn = 1;
 }
 
 function attack()
@@ -27,8 +31,11 @@ function attack()
     ws.send("attack")
     //send attack message to output
     p = document.createElement("p")
-    p.textContent = usernameInput.value + " has attacked"
+    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has attacked"
     document.getElementById("output").append(p);
+
+    //turn addition
+    turn += 1;
 }
 
 function defend()
@@ -37,8 +44,11 @@ function defend()
     ws.send("defend")
     //send defend message to output
     p = document.createElement("p")
-    p.textContent = usernameInput.value + " has defended"
+    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has defended"
     document.getElementById("output").append(p);
+
+    //turn addition
+    turn += 1;
 }
 
 function heal()
@@ -47,8 +57,11 @@ function heal()
     ws.send("heal")
     //send heal message to output
     p = document.createElement("p")
-    p.textContent = usernameInput.value + " has healed"
+    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has healed"
     document.getElementById("output").append(p);
+
+    //turn addition
+    turn += 1;
 }
 
 // need to catch all the messages from the server
@@ -61,4 +74,11 @@ function leave()
         output.removeChild(output.firstChild);
     }
     ws.close();
+
+    //leave message for room
+    p = document.createElement("p")
+    p.textContent = usernameInput.value + " has left the room"
+    document.getElementById("output").append(p);
+
+    //buttons work when room is left
 }
