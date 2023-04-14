@@ -25,13 +25,23 @@ function setRoomAndUsername()
     turn = 1;
 }
 
+function endTurn() {
+    //sets next turn
+    turn += 1;
+
+    //Display player healths *TO DO*
+
+    //Depending on how shield works display shields maybe *TO DO*
+
+    //Display next players turn *TO DO*
+
+}
+
 function rollDice() {
     p = document.createElement("p")
     diceRoll = Math.floor(Math.random() * 6) + 1;
     p.textContent = "Dice roll: " + diceRoll;
     document.getElementById("output").append(p);
-
-
 }
 
 function attack()
@@ -46,8 +56,8 @@ function attack()
     //roll dice
     rollDice();
 
-    //turn addition
-    turn += 1;
+    //turn end
+    endTurn();
 }
 
 function defend()
@@ -62,8 +72,8 @@ function defend()
     //roll dice
     rollDice();
 
-    //turn addition
-    turn += 1;
+    //turn end
+    endTurn();
 }
 
 function heal()
@@ -78,8 +88,8 @@ function heal()
     //roll dice
     rollDice();
 
-    //turn addition
-    turn += 1;
+    //turn end
+    endTurn();
 }
 
 // need to catch all the messages from the server

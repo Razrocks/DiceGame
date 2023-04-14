@@ -12,6 +12,7 @@ public class Player {
     public boolean turn; // for keeping track of whether its this user's turn or not
 
     public Player() {
+        this.session = null;
         this.username = null;
         this.hp = 20;
         this.roll = 0;
