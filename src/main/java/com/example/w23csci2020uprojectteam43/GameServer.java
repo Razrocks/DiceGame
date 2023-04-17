@@ -158,11 +158,6 @@ public class GameServer {
                 return;
             }
         }
-
-        // after game ends make sure to do:
-        //File file = new File(getClass().getClassLoader().getResource("leaderboard.json").toURI()); // throw this in try catch
-        // then add +1 to the wins of the winner if they already exist in the list, if not add them to the list with a win of 1
-
     }
 
         
