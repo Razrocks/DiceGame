@@ -40,7 +40,7 @@ function endTurn() {
 function attack()
 {
     //send attack message
-    ws.send("attack")
+    ws.send("ATTACK")
     //send attack message to output
     p = document.createElement("p")
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has attacked"
@@ -50,23 +50,10 @@ function attack()
     endTurn();
 }
 
-function defend()
-{
-    //send defend message to server
-    ws.send("defend")
-    //send defend message to output
-    p = document.createElement("p")
-    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has defended"
-    document.getElementById("output").append(p);
-
-    //turn end
-    endTurn();
-}
-
 function heal()
 {
     //send heal message to server
-    ws.send("heal")
+    ws.send("HEAL")
     //send heal message to output
     p = document.createElement("p")
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has healed"
