@@ -2,7 +2,7 @@
 
 > Course: CSCI 2020U: Software Systems Development and Integration
 >
-> Developers: Md Tanjeem Haider, Razeen MeeraAmeer, Tobin Kellock,  Om Sathe 
+> Developers: Md Tanjeem Haider, Razeen MeeraAmeer, Tobin Kellock,  Om Sathe
 
 Dice Game is a website which takes 2 players who play against each other by rolling dice to decide their fate. Each player has health and have the ability to either attack or heal each turn equivalent to the amount of what they roll on their dice. Our website makes this game turn based game easy to play whilst being fun.
 
@@ -11,6 +11,9 @@ The Dice Battle game allows 2 players to join a server/room through the room eac
 
 <img src="example.png">
 
+
+### Leaderboard
+There is a leaderboard section for highlighting victories achieved by players.
 
 ## How To Run
 
@@ -27,7 +30,7 @@ git cd "Your Directory here"
 ```
 
 ```
-git clone 
+git clone
 ```
 
 Now we can open where we downloaded the repository in IntelliJ.
@@ -59,3 +62,8 @@ index.html
 ```
 
 And run the website by double clicking the file. This will launch the html file and allow you to play the game.
+
+```
+## Demo Video
+Here is a video demonstrating the game in action.
+https://youtu.be/T-QijBRS7bM
