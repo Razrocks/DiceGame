@@ -154,6 +154,12 @@ input
     overflow-y: auto;
 }
 
+.health
+{
+    color: rgb(0, 255, 0);
+    background-color: gray;
+}
+
 .action-bar
 {
     display: flex;

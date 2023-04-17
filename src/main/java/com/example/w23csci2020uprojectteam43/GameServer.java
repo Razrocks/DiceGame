@@ -100,8 +100,8 @@ public class GameServer {
                 else
                 {
                     // let both players know the other players hp
-                    currentPlayer.session.getAsyncRemote().sendText("OTHER,HP," + otherPlayer.hp);
-                    otherPlayer.session.getAsyncRemote().sendText("TAKEDMG," + currentPlayer.roll);
+                    currentPlayer.session.getAsyncRemote().sendText("OTHER," + otherPlayer.hp);
+                    otherPlayer.session.getAsyncRemote().sendText("TAKEDMG," + otherPlayer.hp);
 
                     // roll a new number for the current player
                     currentPlayer.roll = (int)(Math.random() * 6) + 1;
@@ -141,7 +141,7 @@ public class GameServer {
 
                     // let both players know the current players hp
                     currentPlayer.session.getAsyncRemote().sendText("HP," + currentPlayer.hp);
-                    otherPlayer.session.getAsyncRemote().sendText("OTHER,HP," + currentPlayer.hp);
+                    otherPlayer.session.getAsyncRemote().sendText("OTHER," + currentPlayer.hp);
 
                     // roll a new number for the current player
                     currentPlayer.roll = (int)(Math.random() * 6) + 1;
@@ -184,8 +184,8 @@ public class GameServer {
 
             // read the json file into a list of leaderboard entries class
             ObjectMapper mapper = new ObjectMapper();
-            List<LeaderboardEntry> entries = mapper.readValue(file, new TypeReference<List<LeaderboardEntry>>(){});
-
+            List<LeaderboardEntry> entries = mapper.readValue(file, new TypeReference<>(){});
+            
             // check if the the user is already in the list and if so add 1 to their wins
             boolean found = false;
             for (LeaderboardEntry entry : entries)

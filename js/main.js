@@ -3,7 +3,6 @@ let ws;
 let roomCode;
 let roomCodeInput = document.getElementById("roomCodeInput");
 let usernameInput = document.getElementById("usernameInput");
-let turn;
 function setRoomAndUsername()
 {
     roomCode = roomCodeInput.value;
@@ -16,52 +15,65 @@ function setRoomAndUsername()
     // ws.readyState would be something to look at for this
     setTimeout(function() {
         ws.send("username:" + usernameInput.value);
-    }, 10000);
+    }, 5000);
 
-    //display room code joined on output
-    document.getElementById('output').innerHTML =  usernameInput.value + ' has joined Room: ' + roomCode
+    // When a message is received from the server
+    ws.addEventListener("message", function (event) 
+    {
+        console.log("Message from server: " + event.data);
+        message = event.data.split(",");
 
-    //turn reset
-    turn = 1;
-}
+        switch (message[0])
+        {
+            case "OTHER":
+                document.getElementById("OpponentHP").textContent = "Opponent HP:"+message[1]
+                break;
 
-function endTurn() {
-    //sets next turn
-    turn += 1;
+            case "HP":
+                document.getElementById("SelfHP").textContent = "Your HP:"+message[1];
+                break;
 
-    //Display player healths *TO DO*
+            case "TAKEDMG":
+                document.getElementById("SelfHP").textContent = "Your HP:"+message[1];
+                break;
+            
+            case "ROLL":
+                p = document.createElement("p");
+                p.textContent = "You rolled:"+message[1]+". Do you want to Attack or Heal?";
+                document.getElementById("output").append(p);
+                break;
 
-    //Depending on how shield works display shields maybe *TO DO*
+            case "NOTYOURTURN":
+                p = document.createElement("p");
+                p.textContent = "It is not your turn, please wait for your opponent to finish their turn";
+                document.getElementById("output").append(p);
+                break;
+            case "FULLHP":
+                p = document.createElement("p");
+                p.textContent = "You are at full HP, you healed 0 HP";
+                document.getElementById("output").append(p);
+                break;
+        }
 
-    //Display next players turn *TO DO*
-
+    });
 }
 
 function attack()
 {
     //send attack message
-    ws.send("ATTACK")
-    //send attack message to output
-    p = document.createElement("p")
-    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has attacked"
+    ws.send("ATTACK");
+    p = document.createElement("p");
+    p.textContent = "You attacked";
     document.getElementById("output").append(p);
-
-    //turn end
-    endTurn();
 }
 
 function heal()
 {
     //send heal message to server
-    ws.send("HEAL")
-    //send heal message to output
-    p = document.createElement("p")
-    p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has healed"
+    ws.send("HEAL");
+    p = document.createElement("p");
+    p.textContent = "You healed";
     document.getElementById("output").append(p);
-
-
-    //turn end
-    endTurn();
 }
 
 // need to catch all the messages from the server
