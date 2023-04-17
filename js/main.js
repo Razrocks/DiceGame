@@ -23,6 +23,7 @@ function setRoomAndUsername()
         console.log("Message from server: " + event.data);
         message = event.data.split(",");
 
+        // Handling the messeges sent from the server
         switch (message[0])
         {
             case "OTHER":
@@ -103,7 +104,4 @@ function leave()
     document.getElementById("output").append(p);
 
     ws.close();
-
-    //ws is set to null so the buttons will not work as ws is reset when room is left
-    ws = null;
 }

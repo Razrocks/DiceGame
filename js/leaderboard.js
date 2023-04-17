@@ -3,10 +3,12 @@ function addToTable(data)
     // sorting data by wins
     data.sort((a, b) => b.wins - a.wins);
 
+    // adding data to table
     let count = 1;
     let table = document.getElementById("leaderboard");
     for (let i = 0; i < data.length; i++)
     {
+        // adding the first place with special css
         if (count === 1)
         {
             let row = document.createElement("tr");
@@ -50,6 +52,7 @@ function addToTable(data)
     }
 }
 
+// requestiong for the leaderboard data
 (function requestData() {
     fetch("http://localhost:8080/w23-csci2020u-project-team43-1.0-SNAPSHOT/api/leaderboard",{
         method: 'GET',

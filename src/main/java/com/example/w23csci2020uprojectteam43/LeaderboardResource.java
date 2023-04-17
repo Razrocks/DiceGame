@@ -9,7 +9,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 
 @Path("/leaderboard")
-public class MainServerResource {
+public class LeaderboardResource 
+{
     @GET
     @Produces("application/json")
     public Response getLeaderboard() throws URISyntaxException

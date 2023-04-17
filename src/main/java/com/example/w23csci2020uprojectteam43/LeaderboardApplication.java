@@ -4,6 +4,4 @@ import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
 @ApplicationPath("/api")
-public class MainServerApplication extends Application {
-
-}
+public class LeaderboardApplication extends Application {}

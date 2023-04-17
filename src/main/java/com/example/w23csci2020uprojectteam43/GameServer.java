@@ -12,7 +12,8 @@ import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/ws/{roomID}")
-public class GameServer {
+public class GameServer 
+{
     private static LinkedHashMap<Session, Player> players = new LinkedHashMap<Session, Player>(); //linked hash map so the order of the players is preserved (may not be needed)
 
     @OnOpen
@@ -22,7 +23,6 @@ public class GameServer {
 
         players.put(session,new Player(session)); //adding the new session to the list of players
     }
-
 
     @OnMessage
     public void onMessage(String message, Session session) 
@@ -34,7 +34,8 @@ public class GameServer {
         Player otherPlayer = null;
         for (Map.Entry<Session, Player> entry : players.entrySet()) 
         {
-            if (!entry.getKey().equals(session)) {
+            if (!entry.getKey().equals(session)) 
+            {
                 otherPlayer = entry.getValue();
                 break;
             }
@@ -160,8 +161,6 @@ public class GameServer {
         }
     }
 
-        
-
     @OnClose
     public void onClose(Session session) 
     {
@@ -174,7 +173,8 @@ public class GameServer {
     // method to update the leaderboard data
     public void updateLeaderboard(String username)
     {
-        try {
+        try 
+        {
             File file = new File(getClass().getClassLoader().getResource("leaderboard.json").toURI());
 
             // read the json file into a list of leaderboard entries class
@@ -198,10 +198,12 @@ public class GameServer {
                 entries.add(new LeaderboardEntry(username, 1));
             }
 
+            // writing to the file
             mapper.writeValue(file, entries);
 
-        } catch (URISyntaxException | IOException e) {
-            // TODO Auto-generated catch block
+        } 
+        catch (URISyntaxException | IOException e) 
+        {
             e.printStackTrace();
         }
     }
