@@ -37,13 +37,6 @@ function endTurn() {
 
 }
 
-function rollDice() {
-    p = document.createElement("p")
-    diceRoll = Math.floor(Math.random() * 6) + 1;
-    p.textContent = "Dice roll: " + diceRoll;
-    document.getElementById("output").append(p);
-}
-
 function attack()
 {
     //send attack message
@@ -52,9 +45,6 @@ function attack()
     p = document.createElement("p")
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has attacked"
     document.getElementById("output").append(p);
-
-    //roll dice
-    rollDice();
 
     //turn end
     endTurn();
@@ -69,9 +59,6 @@ function defend()
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has defended"
     document.getElementById("output").append(p);
 
-    //roll dice
-    rollDice();
-
     //turn end
     endTurn();
 }
@@ -85,8 +72,6 @@ function heal()
     p.textContent = "(Turn " + turn + "): " + usernameInput.value + " has healed"
     document.getElementById("output").append(p);
 
-    //roll dice
-    rollDice();
 
     //turn end
     endTurn();
