@@ -9,7 +9,7 @@ import java.util.*;
 
 @ServerEndpoint("/ws/{roomID}")
 public class GameServer {
-    LinkedHashMap<Session, Player> players = new LinkedHashMap<Session, Player>(); //linked hash map so the order of the players is preserved (may not be needed)
+    private static LinkedHashMap<Session, Player> players = new LinkedHashMap<Session, Player>(); //linked hash map so the order of the players is preserved (may not be needed)
 
     @OnOpen
     public void onOpen(Session session, @PathParam("roomID") String roomID) 
@@ -18,7 +18,6 @@ public class GameServer {
 
         players.put(session,new Player(session)); //adding the new session to the list of players
     }
-
 
     @OnMessage
     public void onMessage(String message, Session session) 
