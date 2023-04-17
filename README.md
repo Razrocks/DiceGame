@@ -58,4 +58,4 @@ To begin running the website, we first have to let the API bootup, by clicking o
 index.html
 ```
 
-and run the website by double clicking the file. This will launch the html file and allow you to play the game.
+And run the website by double clicking the file. This will launch the html file and allow you to play the game.
