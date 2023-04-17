@@ -15,6 +15,12 @@ The Dice Battle game allows 2 players to join a server/room through the room eac
 ### Leaderboard
 There is a leaderboard section for highlighting victories achieved by players.
 
+## Demo Video
+
+Here is a video demonstrating the game in action.
+
+https://youtu.be/T-QijBRS7bM
+
 ## How To Run
 
 ### Prerequisites
@@ -62,11 +68,3 @@ index.html
 ```
 
 And run the website by double clicking the file. This will launch the html file and allow you to play the game.
-
-```
-
-## Demo Video
-
-Here is a video demonstrating the game in action.
-
-https://youtu.be/T-QijBRS7bM
