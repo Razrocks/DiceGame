@@ -184,7 +184,7 @@ public class GameServer {
 
             // read the json file into a list of leaderboard entries class
             ObjectMapper mapper = new ObjectMapper();
-            List<LeaderboardEntry> entries = mapper.readValue(file, new TypeReference<>(){});
+            List<LeaderboardEntry> entries = mapper.readValue(file, new TypeReference<List<LeaderboardEntry>>(){});
             
             // check if the the user is already in the list and if so add 1 to their wins
             boolean found = false;

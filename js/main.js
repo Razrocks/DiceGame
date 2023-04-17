@@ -53,8 +53,19 @@ function setRoomAndUsername()
                 p.textContent = "You are at full HP, you healed 0 HP";
                 document.getElementById("output").append(p);
                 break;
-        }
 
+            case "WIN":
+                p = document.createElement("p");
+                p.textContent = "You won!";
+                document.getElementById("output").append(p);
+                break;
+            
+            case "LOSE":
+                p = document.createElement("p");
+                p.textContent = "You lost!";
+                document.getElementById("output").append(p);
+                break;
+        }
     });
 }
 
